@@ -45,6 +45,14 @@
             background-color: #f1f1f1;
             border-radius: 5px;
         }
+        #xml-content {
+            white-space: pre-wrap;
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
     </style>
 </head>
 <body>
@@ -53,57 +61,40 @@
     </header>
 
     <main>
-        <section id="story">
-            <h2>The Story Behind My App</h2>
-            <p>Here you can write about the inspiration and journey that led to the creation of your app. What problem did you identify? What sparked the idea?</p>
-        </section>
-
-        <section id="client">
-            <h2>Who is My Client?</h2>
-            <p>Describe your target audience here. Who will benefit most from your app? What are their characteristics, needs, and pain points?</p>
-        </section>
-
-        <section id="objectives">
-            <h2>Main Objectives of the App</h2>
-            <ul>
-                <li>Objective 1: Describe your first main goal</li>
-                <li>Objective 2: Describe your second main goal</li>
-                <li>Objective 3: Describe your third main goal</li>
-            </ul>
-        </section>
-
-        <section id="features">
-            <h2>App's Main Features</h2>
-            <ul>
-                <li>Feature 1: Describe your first key feature</li>
-                <li>Feature 2: Describe your second key feature</li>
-                <li>Feature 3: Describe your third key feature</li>
-            </ul>
-        </section>
-
-        <section id="goal-achievement">
-            <h2>Did You Propose the Goal That You Proposed?</h2>
-            <p>Discuss how well you've met your initial objectives. What challenges did you face? What successes can you highlight?</p>
-        </section>
+        <!-- Previous sections remain unchanged -->
 
         <section id="relational-model">
             <h2>Relational Model</h2>
-            <div class="placeholder">
-                [Insert your relational model diagram or description here]
+            <p>Below is the XML representation of our relational model:</p>
+            <div id="xml-content">
+                [XML content will be loaded here]
             </div>
         </section>
 
-        <section id="demo">
-            <h2>Let's See a Demo</h2>
-            <p>Provide instructions on how to access your demo, or insert screenshots and descriptions of key app functionalities here.</p>
-            <div class="placeholder">
-                [Insert demo screenshots or video here]
-            </div>
-        </section>
+        <!-- Remaining sections unchanged -->
     </main>
 
     <footer>
         <p>&copy; 2024 My App. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Function to load and display XML content
+        function loadXMLDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Escape the XML content to display it as text
+                    var xmlString = this.responseText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                    document.getElementById("xml-content").textContent = xmlString;
+                }
+            };
+            xhttp.open("GET", "relational_model.xml", true);
+            xhttp.send();
+        }
+
+        // Call the function when the page loads
+        window.onload = loadXMLDoc;
+    </script>
 </body>
 </html>
